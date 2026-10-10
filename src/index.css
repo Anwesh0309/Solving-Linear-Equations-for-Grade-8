@@ -266,8 +266,6 @@ body {
 
 /* Tier 1 Laptop Optimization (Height <= 840px, e.g. 1080p @ 125% scale or 900p laptops) */
 @media (max-height: 840px) {
-  .top-nav-header { padding-top: 6px !important; padding-bottom: 6px !important; }
-  main { padding-top: 42px !important; }
   .sim-stage-wrapper { padding: 4px 12px !important; }
   .sim-card { padding: 10px 16px 12px !important; max-height: 96vh !important; }
   .sim-h2 { font-size: 1.25rem !important; margin-bottom: 6px !important; }
@@ -281,8 +279,6 @@ body {
 
 /* Tier 2 Compact Laptop Optimization (Height <= 750px, e.g. 1366x768 screens, 1080p @ 150% scale) */
 @media (max-height: 750px) {
-  .top-nav-header { padding-top: 4px !important; padding-bottom: 4px !important; }
-  main { padding-top: 38px !important; }
   .sim-stage-wrapper { padding: 2px 8px !important; }
   .sim-card { padding: 8px 12px 10px !important; max-height: 97vh !important; }
   .sim-h2 { display: none !important; }
@@ -296,8 +292,6 @@ body {
 
 /* Tier 3 Ultra-Compact Viewports (Height <= 650px) */
 @media (max-height: 650px) {
-  .top-nav-header { padding-top: 2px !important; padding-bottom: 2px !important; }
-  main { padding-top: 34px !important; }
   .sim-card { padding: 6px 8px 8px !important; }
   .sim-desc { display: none !important; }
   .sim-box { padding: 6px 8px !important; }
