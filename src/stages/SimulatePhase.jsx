@@ -61,25 +61,25 @@ export function SimulatePhase({ muted, onNext }) {
   };
 
   return (
-    <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-3 sm:p-5 relative overflow-hidden select-none z-10">
+    <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-2 sm:p-3 md:p-5 relative overflow-y-auto select-none z-10 sim-stage-wrapper">
       <BgSymbols />
 
       {/* Main Simulation Stations Glass Card Container */}
-      <div className="w-full max-w-6xl max-h-[94vh] bg-[#160b36]/95 border-2 border-purple-400/40 rounded-3xl p-5 sm:p-7 shadow-2xl backdrop-blur-md flex flex-col items-center fade-in-up z-20 my-auto overflow-hidden sim-card">
+      <div className="w-full max-w-6xl max-h-[96vh] sm:max-h-[94vh] bg-[#160b36]/95 border-2 border-purple-400/40 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-5 shadow-2xl backdrop-blur-md flex flex-col items-center fade-in-up z-20 my-auto overflow-hidden sim-card">
         {/* Cyan Accent Bar */}
-        <div className="w-24 h-2 bg-cyan-400 rounded-full mb-2.5 shadow-[0_0_18px_rgba(56,189,248,0.85)] shrink-0" />
+        <div className="w-16 sm:w-20 h-1.5 bg-cyan-400 rounded-full mb-1.5 sm:mb-2 shadow-[0_0_18px_rgba(56,189,248,0.85)] shrink-0" />
 
         {/* Card Header Title */}
-        <h2 className="font-display font-900 text-2xl sm:text-3xl text-white flex items-center gap-3 mb-3.5 shrink-0 sim-h2">
-          <span className="text-3xl sm:text-4xl">🧪</span>
+        <h2 className="font-display font-900 text-xl sm:text-2xl md:text-3xl text-white flex items-center gap-2.5 mb-2 sm:mb-3 shrink-0 sim-h2">
+          <span className="text-2xl sm:text-3xl">🧪</span>
           <span>Simulation Stations</span>
         </h2>
 
         {/* 2-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 w-full items-stretch flex-1 min-h-0 overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 md:gap-5 w-full items-stretch flex-1 min-h-0 overflow-hidden">
           {/* Left Column: Station Sidebar Tabs */}
-          <div className="md:col-span-4 flex flex-col justify-between gap-3 shrink-0">
-            <div className="flex flex-col gap-3.5">
+          <div className="md:col-span-4 flex flex-col justify-between gap-2 sm:gap-3 shrink-0">
+            <div className="flex flex-col gap-2 sm:gap-2.5">
               {STATIONS.map(st => (
                 <button
                   key={st.id}
@@ -89,24 +89,24 @@ export function SimulatePhase({ muted, onNext }) {
                     setStation(st.id);
                     setActIdx(0);
                   }}
-                  className={`p-4 sm:p-5 rounded-2xl border-2 flex items-center justify-between text-left transition-all duration-200 cursor-pointer ${
+                  className={`p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border-2 flex items-center justify-between text-left transition-all duration-200 cursor-pointer ${
                     station === st.id
-                      ? 'border-cyan-400 bg-[#1e2852] text-white shadow-[0_0_22px_rgba(56,189,248,0.4)] scale-[1.02]'
+                      ? 'border-cyan-400 bg-[#1e2852] text-white shadow-[0_0_20px_rgba(56,189,248,0.4)] scale-[1.01]'
                       : 'border-purple-500/25 bg-[#13082b]/80 text-slate-300 hover:border-cyan-400/50'
                   }`}
                 >
-                  <div className="flex items-center gap-3.5">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl font-bold shrink-0 ${
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-xl sm:text-2xl font-bold shrink-0 ${
                       station === st.id ? 'bg-cyan-500/30 text-cyan-300' : 'bg-white/10 text-white'
                     }`}>
                       {st.icon}
                     </div>
                     <div>
-                      <p className="font-display font-900 text-base sm:text-lg leading-tight">{st.name}</p>
-                      <p className="text-xs font-extrabold text-slate-300 mt-0.5">{st.sub}</p>
+                      <p className="font-display font-900 text-sm sm:text-base leading-tight">{st.name}</p>
+                      <p className="text-[11px] sm:text-xs font-extrabold text-slate-300 mt-0.5">{st.sub}</p>
                     </div>
                   </div>
-                  <span className="text-base">🔓</span>
+                  <span className="text-sm sm:text-base">🔓</span>
                 </button>
               ))}
             </div>
@@ -114,7 +114,7 @@ export function SimulatePhase({ muted, onNext }) {
             {/* Bottom Left CTA Button */}
             <button
               onClick={onNext}
-              className="btn-gold font-display font-900 text-base sm:text-lg py-4 px-6 shadow-[0_0_25px_rgba(250,204,21,0.65)] hover:scale-105 transition mt-2 w-full flex items-center justify-center gap-2 cursor-pointer shrink-0"
+              className="btn-gold font-display font-900 text-sm sm:text-base py-2.5 sm:py-3 px-4 shadow-[0_0_22px_rgba(250,204,21,0.6)] hover:scale-105 transition mt-1 w-full flex items-center justify-center gap-2 cursor-pointer shrink-0"
             >
               <span>Go to Practice Phase!</span>
               <span>→</span>
@@ -122,41 +122,43 @@ export function SimulatePhase({ muted, onNext }) {
           </div>
 
           {/* Right Column: Interactive Simulation Box */}
-          <div className="md:col-span-8 bg-[#13092e]/95 border-2 border-purple-400/35 rounded-3xl p-5 sm:p-6 flex flex-col justify-between shadow-inner flex-1 min-h-0 overflow-hidden sim-box">
-            <div className="flex flex-col flex-1 min-h-0 gap-3 sim-stack">
+          <div className="md:col-span-8 bg-[#13092e]/95 border-2 border-purple-400/35 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-5 flex flex-col justify-between shadow-inner flex-1 min-h-0 overflow-hidden sim-box">
+            <div className="flex flex-col flex-1 min-h-0 gap-2 sm:gap-2.5 sim-stack overflow-hidden">
               {/* Header Row */}
-              <div className="flex items-center justify-between border-b border-white/15 pb-3 shrink-0 sim-head">
-                <h3 className="font-display font-900 text-2xl sm:text-3xl text-cyan-300 flex items-center gap-3 sim-act-title">
-                  <span className="text-3xl sm:text-4xl">{currentActivity.icon}</span>
-                  <span>{currentActivity.title}</span>
+              <div className="flex items-center justify-between border-b border-white/15 pb-2 shrink-0 sim-head">
+                <h3 className="font-display font-900 text-lg sm:text-xl md:text-2xl text-cyan-300 flex items-center gap-2 sim-act-title">
+                  <span className="text-2xl sm:text-3xl">{currentActivity.icon}</span>
+                  <span className="line-clamp-1">{currentActivity.title}</span>
                 </h3>
-                <span className="font-display font-900 text-xs sm:text-sm text-slate-200 bg-white/10 px-4 py-1 rounded-full border border-white/15">
+                <span className="font-display font-900 text-[11px] sm:text-xs text-slate-200 bg-white/10 px-3 py-0.5 rounded-full border border-white/15 shrink-0">
                   Activity {actIdx + 1} of 3
                 </span>
               </div>
 
               {/* Activity Description */}
-              <p className="text-slate-100 text-base sm:text-lg leading-relaxed font-extrabold shrink-0 sim-desc">
+              <p className="text-slate-100 text-xs sm:text-sm md:text-base leading-snug font-extrabold shrink-0 sim-desc">
                 {currentActivity.desc}
               </p>
 
-              {/* Interactive activity */}
-              {renderActivity()}
+              {/* Interactive activity container */}
+              <div className="flex-1 min-h-0 flex flex-col overflow-y-auto sim-activity-viewport">
+                {renderActivity()}
+              </div>
             </div>
 
             {/* Bottom Activity Step Buttons */}
-            <div className="flex items-center justify-between border-t border-white/15 pt-4 mt-3 shrink-0 sim-nav">
+            <div className="flex items-center justify-between border-t border-white/15 pt-2 sm:pt-3 mt-1.5 sm:mt-2 shrink-0 sim-nav">
               <button
                 onClick={prevActivity}
                 disabled={station === 1 && actIdx === 0}
-                className="bg-[#1c0d3a]/90 hover:bg-[#2c1859] border-2 border-white/25 text-white font-display font-900 text-sm sm:text-base px-6 py-2.5 rounded-full cursor-pointer transition disabled:opacity-30 disabled:cursor-not-allowed shadow-md"
+                className="bg-[#1c0d3a]/90 hover:bg-[#2c1859] border-2 border-white/25 text-white font-display font-900 text-xs sm:text-sm px-4 sm:px-6 py-1.5 sm:py-2 rounded-full cursor-pointer transition disabled:opacity-30 disabled:cursor-not-allowed shadow-md"
               >
                 ← Previous Activity
               </button>
 
               <button
                 onClick={nextActivity}
-                className="btn-gold text-sm sm:text-base font-900 px-8 py-2.5 rounded-full flex items-center gap-2 shadow-lg hover:scale-105 transition cursor-pointer"
+                className="btn-gold text-xs sm:text-sm font-900 px-5 sm:px-7 py-1.5 sm:py-2 rounded-full flex items-center gap-2 shadow-lg hover:scale-105 transition cursor-pointer"
               >
                 <span>{station === 3 && actIdx === 2 ? 'Go to Practice Phase' : 'Next Activity'}</span>
                 <span>→</span>

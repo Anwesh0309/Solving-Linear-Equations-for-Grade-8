@@ -179,7 +179,7 @@ function Scale({ L, R, xVal, solved, viewMode, realWorld }) {
   );
 
   return (
-    <svg viewBox="0 0 600 310" className="w-full flex-1 min-h-[110px] max-h-[280px]" preserveAspectRatio="xMidYMid meet">
+    <svg viewBox="0 0 600 310" className="w-full h-[clamp(95px,19vh,185px)] max-h-[190px] mx-auto my-0.5 shrink-0" preserveAspectRatio="xMidYMid meet">
       <defs>
         <linearGradient id="boxGrad" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#a855f7" /><stop offset="100%" stopColor="#6d28d9" />
@@ -331,33 +331,33 @@ export function BalanceLab({ activity, onSolved }) {
   }[msg.type];
 
   return (
-    <div className="flex flex-col items-center gap-2 bg-[#1e1342]/95 border-2 border-cyan-400/40 rounded-2xl p-2.5 sm:p-3 shadow-xl flex-1 min-h-0 overflow-y-auto">
+    <div className="flex flex-col items-center gap-1.5 sm:gap-2 bg-[#1e1342]/95 border-2 border-cyan-400/40 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 shadow-xl flex-1 min-h-0 overflow-y-auto w-full">
       {/* Top Header: Real-World Context Badge & Live Equation */}
-      <div className="flex items-center justify-between w-full shrink-0 flex-wrap gap-2">
+      <div className="flex items-center justify-between w-full shrink-0 flex-wrap gap-1.5 sm:gap-2">
         {/* Real-World Context Pill */}
-        <div className="flex items-center gap-2 bg-[#14082c] border border-amber-400/40 px-3 py-1 rounded-xl">
-          <span className="text-xl">{realWorld ? realWorld.itemIcon : '⚖️'}</span>
+        <div className="flex items-center gap-1.5 bg-[#14082c] border border-amber-400/40 px-2.5 py-0.5 rounded-lg">
+          <span className="text-lg">{realWorld ? realWorld.itemIcon : '⚖️'}</span>
           <div className="text-left">
-            <p className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Science Lab'}</p>
-            <p className="font-display font-900 text-xs sm:text-sm text-white">{realWorld ? realWorld.propName : 'Mystery Box'} (x)</p>
+            <p className="text-[9px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Science Lab'}</p>
+            <p className="font-display font-900 text-xs sm:text-sm text-white leading-tight">{realWorld ? realWorld.propName : 'Mystery Box'} (x)</p>
           </div>
         </div>
 
         {/* Live Equation */}
-        <div className="font-display font-900 text-xl sm:text-2xl text-amber-300 bg-[#14082c] border border-amber-400/40 rounded-xl px-4 py-1">
+        <div className="font-display font-900 text-base sm:text-xl text-amber-300 bg-[#14082c] border border-amber-400/40 rounded-lg px-3 py-0.5">
           {expr(L.x, L.n)} <span className="text-white">=</span> {expr(R.x, R.n)}
         </div>
 
         {/* Move Counter & Mode Switch */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={() => { playClick(); setViewMode(v => v === 'market' ? 'cubes' : 'market'); }}
-            className="text-xs font-black bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 px-3 py-1 rounded-xl transition cursor-pointer"
+            className="text-[11px] font-black bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 px-2.5 py-0.5 rounded-lg transition cursor-pointer"
             title="Switch between Real Market Items and Algebra Cubes"
           >
-            {viewMode === 'market' ? '🍎 Real Items' : '⚡ Algebra Cubes'}
+            {viewMode === 'market' ? '🍎 Real Items' : '⚡ Cubes'}
           </button>
-          <span className="font-display font-900 text-xs sm:text-sm text-slate-200 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+          <span className="font-display font-900 text-[11px] sm:text-xs text-slate-200 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/15">
             Moves: {moves}
           </span>
         </div>
@@ -368,63 +368,63 @@ export function BalanceLab({ activity, onSolved }) {
 
       {/* Status & Victory Banner */}
       {solved ? (
-        <div className="w-full bg-emerald-950/80 border-2 border-emerald-400/60 rounded-xl px-4 py-2 text-center fade-in-up shrink-0">
-          <p className="font-display font-900 text-emerald-300 text-base sm:text-lg">
+        <div className="w-full bg-emerald-950/80 border-2 border-emerald-400/60 rounded-xl px-3 py-1.5 text-center fade-in-up shrink-0">
+          <p className="font-display font-900 text-emerald-300 text-sm sm:text-base">
             🎉 Solved! One {realWorld ? realWorld.propName : 'Box'} weighs exactly x = {fmt(xVal)} {realWorld ? realWorld.unitName : 'cubes'}!
           </p>
-          <p className="font-extrabold text-emerald-100 text-xs sm:text-sm">
-            Verification: {expr(start.L.x, start.L.n)} → {start.L.x > 1 ? `${start.L.x}(${xVal})` : `${xVal}`} + {start.L.n} = {fmt(value(start.L, xVal))} ✓ Matches the right pan!
+          <p className="font-extrabold text-emerald-100 text-[11px] sm:text-xs">
+            Verification: {expr(start.L.x, start.L.n)} → {start.L.x > 1 ? `${start.L.x}(${xVal})` : `${xVal}`} + {start.L.n} = {fmt(value(start.L, xVal))} ✓ Matches right pan!
           </p>
         </div>
       ) : (
-        <div className={`w-full border-2 rounded-xl px-4 py-1.5 text-center text-xs sm:text-sm font-extrabold shrink-0 ${msgStyle}`}>
+        <div className={`w-full border-2 rounded-xl px-3 py-1 text-center text-[11px] sm:text-xs font-extrabold shrink-0 ${msgStyle}`}>
           {msg.text}
         </div>
       )}
 
       {/* Grade 7 Detective Hint Accordion */}
       {showGrade7Tip && (
-        <div className="w-full bg-amber-950/80 border-2 border-amber-400/60 rounded-xl p-2.5 text-amber-200 text-xs sm:text-sm font-bold text-left shrink-0 fade-in-up">
+        <div className="w-full bg-amber-950/80 border-2 border-amber-400/60 rounded-xl p-2 text-amber-200 text-xs font-bold text-left shrink-0 fade-in-up">
           💡 <span className="text-amber-300 font-black">Grade 7 Tip:</span> {grade7Tip || hint}
         </div>
       )}
 
       {/* Controls: Golden Rule Mode + Action Helpers */}
-      <div className="flex items-center justify-between gap-2 w-full flex-wrap shrink-0">
-        <div className="flex items-center gap-2 bg-[#14082c] px-2 py-1 rounded-xl border border-cyan-400/30">
-          <span className="text-[11px] font-extrabold text-slate-300 pl-1">Apply to:</span>
+      <div className="flex items-center justify-between gap-1.5 w-full flex-wrap shrink-0">
+        <div className="flex items-center gap-1.5 bg-[#14082c] px-2 py-0.5 rounded-xl border border-cyan-400/30">
+          <span className="text-[10px] font-extrabold text-slate-300 pl-0.5">Apply to:</span>
           <button
             onClick={() => { playClick(); setMode('both'); }}
-            className={`px-3 py-1 rounded-lg text-xs font-black cursor-pointer transition ${mode === 'both' ? 'bg-emerald-400 text-slate-950 shadow-md scale-105' : 'bg-white/10 text-white hover:bg-white/20'}`}
+            className={`px-2.5 py-0.5 rounded-lg text-[11px] font-black cursor-pointer transition ${mode === 'both' ? 'bg-emerald-400 text-slate-950 shadow-md scale-102' : 'bg-white/10 text-white hover:bg-white/20'}`}
           >
-            ⚖️ Both pans (Golden Rule)
+            ⚖️ Both pans
           </button>
           <button
             onClick={() => { playClick(); setMode('left'); }}
-            className={`px-3 py-1 rounded-lg text-xs font-black cursor-pointer transition ${mode === 'left' ? 'bg-rose-400 text-slate-950 shadow-md scale-105' : 'bg-white/10 text-white hover:bg-white/20'}`}
+            className={`px-2.5 py-0.5 rounded-lg text-[11px] font-black cursor-pointer transition ${mode === 'left' ? 'bg-rose-400 text-slate-950 shadow-md scale-102' : 'bg-white/10 text-white hover:bg-white/20'}`}
             title="Demonstrates what happens when you violate the Golden Rule"
           >
-            ⚠️ Left only (Test tilt)
+            ⚠️ Left only
           </button>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={undo}
             disabled={!history.length}
-            className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-xs px-3.5 py-1.5 rounded-xl transition cursor-pointer disabled:opacity-35 disabled:cursor-not-allowed"
+            className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-xs px-2.5 py-1 rounded-lg transition cursor-pointer disabled:opacity-35 disabled:cursor-not-allowed"
           >
             ↩ Undo
           </button>
           <button
             onClick={reset}
-            className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-xs px-3.5 py-1.5 rounded-xl transition cursor-pointer"
+            className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-xs px-2.5 py-1 rounded-lg transition cursor-pointer"
           >
             🔄 Reset
           </button>
           <button
             onClick={() => { playClick(); setShowGrade7Tip(s => !s); }}
-            className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 font-display font-900 text-xs px-3.5 py-1.5 rounded-xl transition cursor-pointer"
+            className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 font-display font-900 text-xs px-2.5 py-1 rounded-lg transition cursor-pointer"
           >
             💡 Hint
           </button>
@@ -432,7 +432,7 @@ export function BalanceLab({ activity, onSolved }) {
       </div>
 
       {/* Operation Move Buttons */}
-      <div className="grid grid-cols-4 gap-2 w-full shrink-0">
+      <div className="grid grid-cols-4 gap-1.5 sm:gap-2 w-full shrink-0">
         {ops.map((op, i) => {
           const { sym, txt } = opLabel(op, realWorld ? realWorld.unitName : 'items');
           return (
@@ -440,10 +440,10 @@ export function BalanceLab({ activity, onSolved }) {
               key={i}
               onClick={() => handleOp(op)}
               disabled={solved}
-              className="bg-gradient-to-b from-cyan-500/25 to-cyan-700/20 hover:from-cyan-400/40 border-2 border-cyan-400/50 rounded-xl py-1.5 px-1 flex flex-col items-center cursor-pointer transition hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              className="bg-gradient-to-b from-cyan-500/25 to-cyan-700/20 hover:from-cyan-400/40 border-2 border-cyan-400/50 rounded-xl py-1 sm:py-1.5 px-1 flex flex-col items-center cursor-pointer transition hover:scale-[1.02] disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
             >
-              <span className="font-display font-900 text-lg sm:text-xl text-white leading-none">{sym}</span>
-              <span className="text-[10px] font-extrabold text-cyan-200 mt-0.5 text-center leading-tight">{txt}</span>
+              <span className="font-display font-900 text-base sm:text-lg text-white leading-none">{sym}</span>
+              <span className="text-[9px] sm:text-[10px] font-extrabold text-cyan-200 mt-0.5 text-center leading-tight">{txt}</span>
             </button>
           );
         })}

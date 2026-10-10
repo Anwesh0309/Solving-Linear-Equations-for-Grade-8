@@ -27,7 +27,7 @@ function TaxiVisual({ x, success }) {
   const left = 38 + km * 34;
 
   return (
-    <svg viewBox="0 0 420 160" className="w-full h-[clamp(120px,20vh,175px)] shrink-0 drop-shadow-[0_0_20px_rgba(250,204,21,0.35)]">
+    <svg viewBox="0 0 420 160" className="w-full h-[clamp(85px,15vh,135px)] shrink-0 drop-shadow-[0_0_20px_rgba(250,204,21,0.35)]">
       {/* Sky & City Skyline Silhouette */}
       <rect x="0" y="0" width="420" height="160" rx="16" fill="#0f172a" />
       {/* City Buildings */}
@@ -97,7 +97,7 @@ function PlansVisual({ x, rhsLabel }) {
   const equal = A === B;
 
   return (
-    <svg viewBox="0 0 420 160" className="w-full h-[clamp(120px,20vh,175px)] drop-shadow-[0_0_20px_rgba(250,204,21,0.35)]">
+    <svg viewBox="0 0 420 160" className="w-full h-[clamp(85px,15vh,135px)] drop-shadow-[0_0_20px_rgba(250,204,21,0.35)]">
       <rect x="0" y="0" width="420" height="160" rx="16" fill="#0f172a" />
       {/* Ground Baseline */}
       <line x1="24" y1="130" x2="396" y2="130" stroke="#475569" strokeWidth="2" />
@@ -154,7 +154,7 @@ function ChestVisual({ x, open, shake }) {
   const code = Number.isFinite(x) ? String(Math.abs(Math.round(x))).slice(0, 2) : '';
 
   return (
-    <svg viewBox="0 0 240 160" className={`h-[clamp(120px,20vh,175px)] w-auto drop-shadow-[0_0_24px_rgba(245,158,11,0.55)] ${shake ? 'animate-shake' : ''}`}>
+    <svg viewBox="0 0 240 160" className={`h-[clamp(85px,15vh,135px)] w-auto drop-shadow-[0_0_24px_rgba(245,158,11,0.55)] ${shake ? 'animate-shake' : ''}`}>
       {/* Treasure Glow when Open */}
       {open && (
         <g className="fade-in-up">
@@ -254,50 +254,50 @@ export function SoloSolver({ activity, onSolved, onRetry }) {
   const eqText = `${lhs.label} = ${rhs.label}`;
 
   return (
-    <div className="flex flex-col items-center gap-2.5 bg-[#1e1342]/95 border-2 border-cyan-400/40 rounded-2xl p-3 sm:p-4 shadow-xl flex-1 min-h-0 overflow-y-auto w-full">
+    <div className="flex flex-col items-center gap-1.5 sm:gap-2.5 bg-[#1e1342]/95 border-2 border-cyan-400/40 rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-xl flex-1 min-h-0 overflow-y-auto w-full">
       {/* Header Context Banner */}
-      <div className="flex items-center justify-between w-full bg-[#14082c] border border-amber-400/40 rounded-xl px-3 py-1.5 shrink-0">
+      <div className="flex items-center justify-between w-full bg-[#14082c] border border-amber-400/40 rounded-lg sm:rounded-xl px-2.5 py-1 shrink-0">
         <div className="flex items-center gap-2">
-          <span className="text-xl">{type === 'taxi' ? '🚕' : type === 'plans' ? '🏋️' : '🗝️'}</span>
+          <span className="text-lg sm:text-xl">{type === 'taxi' ? '🚕' : type === 'plans' ? '🏋️' : '🗝️'}</span>
           <div className="text-left">
-            <p className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Real-World Application'}</p>
-            <p className="font-display font-900 text-xs text-white">{activity.title}</p>
+            <p className="text-[9px] sm:text-[10px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Real-World Application'}</p>
+            <p className="font-display font-900 text-xs sm:text-sm text-white">{activity.title}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs font-mono bg-purple-900/60 px-2 py-0.5 rounded text-amber-300 border border-purple-400/30">
+          <span className="text-[11px] sm:text-xs font-mono bg-purple-900/60 px-2 py-0.5 rounded text-amber-300 border border-purple-400/30">
             {eqText}
           </span>
         </div>
       </div>
 
       {/* Main Interactive Stage & Problem Data */}
-      <div className="flex items-center justify-center gap-4 w-full flex-1 min-h-0 flex-wrap">
-        <div className="flex-1 min-w-[260px] max-w-[480px] flex items-center justify-center">
+      <div className="flex items-center justify-center gap-2 sm:gap-3 w-full flex-1 min-h-0 flex-wrap">
+        <div className="flex-1 min-w-[220px] max-w-[420px] flex items-center justify-center">
           {type === 'taxi' && <TaxiVisual x={num} success={success} />}
           {type === 'plans' && <PlansVisual x={num} />}
           {type === 'chest' && <ChestVisual x={num} open={success} shake={shake} />}
         </div>
 
         {/* Real-World Breakdown Card */}
-        <div className="text-left text-xs sm:text-sm font-extrabold text-slate-100 flex flex-col gap-1.5 bg-[#14082c] border border-purple-400/30 rounded-xl p-3 shrink-0 min-w-[220px]">
-          <p className="text-amber-300 font-black text-xs uppercase tracking-wider mb-0.5">📊 Itemized Ledger:</p>
+        <div className="text-left text-[11px] sm:text-xs font-extrabold text-slate-100 flex flex-col gap-1 bg-[#14082c] border border-purple-400/30 rounded-lg sm:rounded-xl p-2 sm:p-2.5 shrink-0 min-w-[200px]">
+          <p className="text-amber-300 font-black text-[11px] uppercase tracking-wider mb-0.5">📊 Itemized Ledger:</p>
           <p>• Equation: <span className="text-cyan-300 font-mono font-black">{eqText}</span></p>
           <p>• Solve for: <span className="text-white font-900">{ask}</span></p>
           <p>• Left side: <span className="text-emerald-300">{Number.isFinite(num) ? evalSide(lhs, num) : '?'}</span></p>
           <p>• Right side: <span className="text-emerald-300">{evalSide(rhs, Number.isFinite(num) ? num : 0)}</span></p>
-          <p className="text-[11px] text-slate-400">Attempts: {attempts}</p>
+          <p className="text-[10px] text-slate-400">Attempts: {attempts}</p>
         </div>
       </div>
 
       {/* Interactive Value Controls (Stepper & Input) */}
-      <div className="flex flex-col items-center gap-2 w-full shrink-0">
-        <div className="flex items-center gap-2 justify-center flex-wrap">
+      <div className="flex flex-col items-center gap-1.5 w-full shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 justify-center flex-wrap">
           {/* Stepper Buttons for Grade 7 Ease */}
           <button
             onClick={() => handleStepChange(-1)}
             disabled={success}
-            className="w-10 h-10 rounded-xl bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-white font-display font-900 text-lg flex items-center justify-center cursor-pointer transition disabled:opacity-40"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-white font-display font-900 text-base sm:text-lg flex items-center justify-center cursor-pointer transition disabled:opacity-40"
             title="Decrease x"
           >
             −
@@ -310,13 +310,13 @@ export function SoloSolver({ activity, onSolved, onRetry }) {
             onChange={e => { setAnswer(e.target.value); if (!success) setFeedback(null); }}
             onKeyDown={e => { if (e.key === 'Enter') check(); }}
             disabled={success}
-            className="bg-[#14082c] border-2 border-cyan-400/70 rounded-xl px-4 py-2.5 text-white font-display font-900 text-base sm:text-lg text-center outline-none focus:border-amber-400 w-36 shadow-inner disabled:opacity-60"
+            className="bg-[#14082c] border-2 border-cyan-400/70 rounded-lg sm:rounded-xl px-3 py-1.5 sm:py-2 text-white font-display font-900 text-sm sm:text-base text-center outline-none focus:border-amber-400 w-28 sm:w-32 shadow-inner disabled:opacity-60"
           />
 
           <button
             onClick={() => handleStepChange(1)}
             disabled={success}
-            className="w-10 h-10 rounded-xl bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-white font-display font-900 text-lg flex items-center justify-center cursor-pointer transition disabled:opacity-40"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-white font-display font-900 text-base sm:text-lg flex items-center justify-center cursor-pointer transition disabled:opacity-40"
             title="Increase x"
           >
             +
@@ -326,22 +326,22 @@ export function SoloSolver({ activity, onSolved, onRetry }) {
           <button
             onClick={check}
             disabled={success}
-            className="btn-gold text-xs sm:text-sm font-900 px-6 py-2.5 shadow-lg hover:scale-105 transition cursor-pointer disabled:opacity-50 disabled:hover:scale-100"
+            className="btn-gold text-xs font-900 px-4 sm:px-5 py-1.5 sm:py-2 shadow-lg hover:scale-105 transition cursor-pointer disabled:opacity-50 disabled:hover:scale-100"
           >
             Check Answer ✨
           </button>
 
           <button
             onClick={() => { playClick(); setShowHint(h => !h); }}
-            className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 font-display font-900 text-xs px-3.5 py-2.5 rounded-xl transition cursor-pointer"
+            className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 font-display font-900 text-[11px] sm:text-xs px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl transition cursor-pointer"
           >
             💡 Hint
           </button>
         </div>
 
         {/* Quick Slider for Visual Exploration */}
-        <div className="flex items-center gap-3 w-full max-w-md bg-[#14082c] border border-cyan-400/30 px-3 py-1 rounded-xl">
-          <span className="text-[11px] font-bold text-slate-300">Test {ask}:</span>
+        <div className="flex items-center gap-2.5 w-full max-w-sm bg-[#14082c] border border-cyan-400/30 px-2.5 py-0.5 rounded-lg shrink-0">
+          <span className="text-[10px] font-bold text-slate-300">Test {ask}:</span>
           <input
             type="range"
             min="0"
@@ -352,7 +352,7 @@ export function SoloSolver({ activity, onSolved, onRetry }) {
             disabled={success}
             className="flex-1 accent-amber-400 cursor-pointer"
           />
-          <span className="text-xs font-mono text-amber-300 font-black min-w-[24px] text-right">
+          <span className="text-xs font-mono text-amber-300 font-black min-w-[20px] text-right">
             {Number.isFinite(num) ? num : 0}
           </span>
         </div>
@@ -360,15 +360,15 @@ export function SoloSolver({ activity, onSolved, onRetry }) {
 
       {/* Grade 7 Detective Hint */}
       {showHint && (
-        <div className="p-3 bg-amber-950/90 border border-amber-400/50 text-amber-200 rounded-xl text-xs sm:text-sm font-bold w-full text-left fade-in-up shrink-0">
-          <p className="font-black text-amber-300 mb-1">💡 Grade 7 Guide:</p>
-          <p className="leading-relaxed">{grade7Tip || hint}</p>
+        <div className="p-2 sm:p-2.5 bg-amber-950/90 border border-amber-400/50 text-amber-200 rounded-lg sm:rounded-xl text-xs font-bold w-full text-left fade-in-up shrink-0">
+          <p className="font-black text-amber-300 mb-0.5">💡 Grade 7 Guide:</p>
+          <p className="leading-snug">{grade7Tip || hint}</p>
         </div>
       )}
 
       {/* Feedback Banner */}
       {feedback && (
-        <div className={`p-2.5 rounded-xl text-xs sm:text-sm font-900 w-full text-center shadow-xl shrink-0 fade-in-up ${
+        <div className={`p-2 rounded-xl text-xs sm:text-sm font-900 w-full text-center shadow-xl shrink-0 fade-in-up ${
           feedback.success ? 'bg-emerald-950/90 text-emerald-300 border-2 border-emerald-400/60' : 'bg-rose-950/90 text-rose-300 border-2 border-rose-400/60'
         }`}>
           <p>{feedback.text}</p>

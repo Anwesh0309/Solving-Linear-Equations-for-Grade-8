@@ -11,7 +11,7 @@ import { playClick, playSwooshShimmer, playStampThud, playVictoryFanfare, playWo
      A3 Cafe Invoice Auditor      : Audit receipt errors with auditor stamps
    ========================================================================= */
 
-const WRAP = "flex flex-col items-center gap-2.5 bg-[#1e1342]/95 border-2 border-cyan-400/40 rounded-2xl p-3 sm:p-4 shadow-xl flex-1 min-h-0 overflow-y-auto w-full";
+const WRAP = "flex flex-col items-center gap-1.5 sm:gap-2.5 bg-[#1e1342]/95 border-2 border-cyan-400/40 rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-xl flex-1 min-h-0 overflow-y-auto w-full";
 
 const SYM = { mul: '×', div: '÷', add: '+', sub: '−' };
 const INVERSE = { mul: 'div', div: 'mul', add: 'sub', sub: 'add' };
@@ -33,20 +33,20 @@ function useShake() {
 function HintBar({ hint, grade7Tip, children }) {
   const [show, setShow] = useState(false);
   return (
-    <div className="w-full flex flex-col items-center gap-2 shrink-0">
-      <div className="flex items-center gap-3">
+    <div className="w-full flex flex-col items-center gap-1.5 shrink-0">
+      <div className="flex items-center gap-2">
         {children}
         <button
           onClick={() => { playClick(); setShow(h => !h); }}
-          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 font-display font-900 text-xs sm:text-sm px-4 py-2 rounded-xl transition cursor-pointer"
+          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-200 font-display font-900 text-[11px] sm:text-xs px-3 py-1.5 rounded-lg sm:rounded-xl transition cursor-pointer"
         >
           💡 Hint
         </button>
       </div>
       {show && (
-        <div className="p-3 bg-amber-950/90 border border-amber-400/60 text-amber-200 rounded-xl text-xs sm:text-sm font-bold w-full text-left fade-in-up">
-          <p className="font-black text-amber-300 mb-1">💡 Grade 7 Guide:</p>
-          <p className="leading-relaxed">{grade7Tip || hint}</p>
+        <div className="p-2 sm:p-2.5 bg-amber-950/90 border border-amber-400/60 text-amber-200 rounded-lg sm:rounded-xl text-xs font-bold w-full text-left fade-in-up">
+          <p className="font-black text-amber-300 mb-0.5">💡 Grade 7 Guide:</p>
+          <p className="leading-snug">{grade7Tip || hint}</p>
         </div>
       )}
     </div>
@@ -117,64 +117,64 @@ export function UndoMachine({ activity, onSolved }) {
   return (
     <div className={WRAP}>
       {/* Real-World Kiosk Banner */}
-      <div className="flex items-center justify-between w-full bg-[#14082c] border border-amber-400/40 rounded-xl px-3 py-1.5 shrink-0">
+      <div className="flex items-center justify-between w-full bg-[#14082c] border border-amber-400/40 rounded-lg sm:rounded-xl px-2.5 py-1 shrink-0">
         <div className="flex items-center gap-2">
-          <span className="text-xl">🕹️</span>
+          <span className="text-lg sm:text-xl">🕹️</span>
           <div>
-            <p className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Vending Machine'}</p>
-            <p className="font-display font-900 text-xs text-white">{realWorld ? realWorld.machineName : 'Token Dispenser'}</p>
+            <p className="text-[9px] sm:text-[10px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Vending Machine'}</p>
+            <p className="font-display font-900 text-xs sm:text-sm text-white">{realWorld ? realWorld.machineName : 'Token Dispenser'}</p>
           </div>
         </div>
-        <span className="text-[11px] font-mono bg-purple-900/60 px-2 py-0.5 rounded text-purple-200 border border-purple-400/30">
+        <span className="text-[10px] sm:text-[11px] font-mono bg-purple-900/60 px-2 py-0.5 rounded text-purple-200 border border-purple-400/30">
           Receipt: $20.00
         </span>
       </div>
 
       {/* Forward Machine Conveyor */}
-      <div className="w-full bg-[#14082c] border-2 border-purple-400/40 rounded-2xl p-3 shrink-0">
-        <p className="text-xs font-black text-purple-300 uppercase tracking-wider mb-2 text-center flex items-center justify-center gap-2">
+      <div className="w-full bg-[#14082c] border-2 border-purple-400/40 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 shrink-0">
+        <p className="text-[11px] sm:text-xs font-black text-purple-300 uppercase tracking-wider mb-1.5 text-center flex items-center justify-center gap-1.5">
           <span>⚙️</span> Forward Dispenser: Token (x) → Multiplier → Fee Added → Printed $20
         </p>
-        <div className="flex items-center justify-center gap-2 flex-wrap">
-          <div className="font-display font-900 text-xl bg-amber-400 text-slate-950 rounded-xl px-4 py-2 shadow-lg flex items-center gap-1.5">
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
+          <div className="font-display font-900 text-base sm:text-lg bg-amber-400 text-slate-950 rounded-lg sm:rounded-xl px-3 py-1 sm:py-1.5 shadow-md flex items-center gap-1">
             <span>🪙</span> <span>x</span>
           </div>
           {stages.map((s, i) => (
             <React.Fragment key={i}>
-              <span className="text-amber-300 font-black">➔</span>
-              <div className="font-display font-900 text-lg bg-gradient-to-b from-purple-500 to-purple-700 text-white rounded-xl px-4 py-2 border-2 border-white/30 shadow-lg">
+              <span className="text-amber-300 font-black text-xs sm:text-sm">➔</span>
+              <div className="font-display font-900 text-sm sm:text-base bg-gradient-to-b from-purple-500 to-purple-700 text-white rounded-lg sm:rounded-xl px-3 py-1 sm:py-1.5 border-2 border-white/30 shadow-md">
                 {s.op === 'mul' ? `× ${s.v} (Bonus)` : `+ ${s.v} (Fee)`}
               </div>
             </React.Fragment>
           ))}
-          <span className="text-amber-300 font-black">➔</span>
-          <div className="font-display font-900 text-xl bg-cyan-400 text-slate-950 rounded-xl px-4 py-2 shadow-lg flex items-center gap-1.5">
+          <span className="text-amber-300 font-black text-xs sm:text-sm">➔</span>
+          <div className="font-display font-900 text-base sm:text-lg bg-cyan-400 text-slate-950 rounded-lg sm:rounded-xl px-3 py-1 sm:py-1.5 shadow-md flex items-center gap-1">
             <span>🧾</span> <span>${output}</span>
           </div>
         </div>
       </div>
 
       {/* Reverse Machine Conveyor */}
-      <div className="w-full bg-[#14082c] border-2 border-emerald-400/40 rounded-2xl p-3 shrink-0">
-        <p className="text-xs font-black text-emerald-300 uppercase tracking-wider mb-2 text-center flex items-center justify-center gap-2">
+      <div className="w-full bg-[#14082c] border-2 border-emerald-400/40 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 shrink-0">
+        <p className="text-[11px] sm:text-xs font-black text-emerald-300 uppercase tracking-wider mb-1.5 text-center flex items-center justify-center gap-1.5">
           <span>🔄</span> Reverse Run: Undo Last Stage First to Find Maya's Original Token!
         </p>
-        <div className="flex items-center justify-center gap-2 flex-wrap">
-          <div className="font-display font-900 text-xl bg-cyan-400 text-slate-950 rounded-xl px-4 py-2">
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
+          <div className="font-display font-900 text-base sm:text-lg bg-cyan-400 text-slate-950 rounded-lg sm:rounded-xl px-3 py-1 sm:py-1.5">
             ${output}
           </div>
           {Array.from({ length: n }).map((_, i) => {
             const entry = log[i];
             return (
               <React.Fragment key={i}>
-                <span className="text-emerald-300 font-black">➔</span>
-                <div className={`font-display font-900 text-lg rounded-xl px-4 py-2 min-w-[70px] text-center border-2 transition-all ${
+                <span className="text-emerald-300 font-black text-xs sm:text-sm">➔</span>
+                <div className={`font-display font-900 text-sm sm:text-base rounded-lg sm:rounded-xl px-3 py-1 sm:py-1.5 min-w-[55px] text-center border-2 transition-all ${
                   entry ? 'bg-emerald-500 text-white border-emerald-200 shadow-[0_0_16px_rgba(52,211,153,0.6)]' : 'border-dashed border-emerald-400/60 text-emerald-300/60'
                 }`}>
                   {entry ? `${SYM[entry.op]} ${entry.v}` : '?'}
                 </div>
-                <span className="text-emerald-300 font-black">➔</span>
-                <div className={`font-display font-900 text-lg rounded-xl px-4 py-2 min-w-[60px] text-center transition-all ${
+                <span className="text-emerald-300 font-black text-xs sm:text-sm">➔</span>
+                <div className={`font-display font-900 text-sm sm:text-base rounded-lg sm:rounded-xl px-3 py-1 sm:py-1.5 min-w-[50px] text-center transition-all ${
                   entry ? 'bg-amber-400 text-slate-950 fade-in-up' : 'bg-white/10 text-white/40'
                 }`}>
                   {entry ? (i === n - 1 ? `🪙 ${entry.to}` : `$${entry.to}`) : '?'}
@@ -187,28 +187,28 @@ export function UndoMachine({ activity, onSolved }) {
 
       {/* Success / Status Message */}
       {done ? (
-        <div className="w-full bg-emerald-950/80 border-2 border-emerald-400/60 rounded-xl px-4 py-2 text-center fade-in-up shrink-0">
-          <p className="font-display font-900 text-emerald-300 text-base sm:text-lg">
+        <div className="w-full bg-emerald-950/80 border-2 border-emerald-400/60 rounded-xl px-3 py-1.5 text-center fade-in-up shrink-0">
+          <p className="font-display font-900 text-emerald-300 text-sm sm:text-base">
             🎉 Mystery solved! Maya's original token was worth x = {answer} coins!
           </p>
-          <p className="font-extrabold text-emerald-100 text-xs sm:text-sm">
+          <p className="font-extrabold text-emerald-100 text-[11px] sm:text-xs">
             Forward verification: {answer} × 3 = 18, then + 2 = 20 ✓ Matches the printed receipt!
           </p>
         </div>
       ) : (
-        <div className="w-full border-2 border-white/15 bg-white/5 rounded-xl px-4 py-1.5 text-center text-xs sm:text-sm font-extrabold text-slate-200 shrink-0">
+        <div className="w-full border-2 border-white/15 bg-white/5 rounded-xl px-3 py-1 text-center text-[11px] sm:text-xs font-extrabold text-slate-200 shrink-0">
           {msg}
         </div>
       )}
 
       {/* Undo Operation Buttons */}
-      <div className="flex items-center justify-center gap-3 flex-wrap shrink-0">
+      <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap shrink-0">
         {palette.map((p, i) => (
           <button
             key={i}
             disabled={done}
             onClick={() => choose(p, i)}
-            className={`bg-gradient-to-b from-cyan-500/25 to-cyan-700/20 hover:from-cyan-400/40 border-2 border-cyan-400/50 rounded-xl px-5 py-2 font-display font-900 text-xl text-white cursor-pointer transition hover:scale-105 disabled:opacity-40 disabled:cursor-not-allowed ${
+            className={`bg-gradient-to-b from-cyan-500/25 to-cyan-700/20 hover:from-cyan-400/40 border-2 border-cyan-400/50 rounded-xl px-3.5 sm:px-4 py-1 sm:py-1.5 font-display font-900 text-base sm:text-lg text-white cursor-pointer transition hover:scale-105 disabled:opacity-40 disabled:cursor-not-allowed ${
               shake === i ? 'animate-shake border-rose-400' : ''
             }`}
           >
@@ -220,7 +220,7 @@ export function UndoMachine({ activity, onSolved }) {
       <HintBar hint={hint} grade7Tip={grade7Tip}>
         <button
           onClick={restart}
-          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-xs sm:text-sm px-4 py-2 rounded-xl transition cursor-pointer"
+          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-[11px] sm:text-xs px-3 py-1.5 rounded-lg sm:rounded-xl transition cursor-pointer"
         >
           🔄 Restart
         </button>
@@ -282,23 +282,23 @@ export function StepSorter({ activity, onSolved }) {
   return (
     <div className={WRAP}>
       {/* Real-World Parcel Label */}
-      <div className="flex items-center justify-between w-full bg-[#14082c] border border-amber-400/40 rounded-xl px-3 py-1.5 shrink-0">
+      <div className="flex items-center justify-between w-full bg-[#14082c] border border-amber-400/40 rounded-lg sm:rounded-xl px-2.5 py-1 shrink-0">
         <div className="flex items-center gap-2">
-          <span className="text-xl">🎁</span>
+          <span className="text-lg sm:text-xl">🎁</span>
           <div>
-            <p className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Gift Unboxing'}</p>
-            <p className="font-display font-900 text-xs text-white">Rule: Ribbon first (+6), then 4 flaps (÷4)</p>
+            <p className="text-[9px] sm:text-[10px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Gift Unboxing'}</p>
+            <p className="font-display font-900 text-xs sm:text-sm text-white">Rule: Ribbon first (+6), then 4 flaps (÷4)</p>
           </div>
         </div>
-        <span className="text-[11px] font-mono bg-purple-900/60 px-2 py-0.5 rounded text-purple-200 border border-purple-400/30">
+        <span className="text-[10px] sm:text-[11px] font-mono bg-purple-900/60 px-2 py-0.5 rounded text-purple-200 border border-purple-400/30">
           Parcel: 4x − 6 = 18
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full shrink-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 w-full shrink-0">
         {/* Solution Column */}
-        <div className="bg-[#14082c] border-2 border-emerald-400/40 rounded-2xl p-2.5 flex flex-col gap-1.5">
-          <p className="text-xs font-black text-emerald-300 uppercase tracking-wider text-center flex items-center justify-center gap-1.5">
+        <div className="bg-[#14082c] border-2 border-emerald-400/40 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col gap-1 sm:gap-1.5">
+          <p className="text-[11px] sm:text-xs font-black text-emerald-300 uppercase tracking-wider text-center flex items-center justify-center gap-1.5">
             <span>🎀</span> Your Unboxing Protocol
           </p>
           {order.map((id, i) => {
@@ -307,22 +307,22 @@ export function StepSorter({ activity, onSolved }) {
             return (
               <div
                 key={id}
-                className={`rounded-xl px-3 py-1.5 flex items-center gap-3 border-2 min-h-[44px] transition-all ${
+                className={`rounded-lg sm:rounded-xl px-2.5 py-1 flex items-center gap-2.5 border-2 min-h-[38px] transition-all ${
                   filled ? 'bg-emerald-600/25 border-emerald-300/70 fade-in-up' : 'border-dashed border-white/25 bg-white/5'
                 }`}
               >
-                <span className={`w-7 h-7 rounded-full font-display font-900 text-xs flex items-center justify-center shrink-0 ${
+                <span className={`w-6 h-6 rounded-full font-display font-900 text-xs flex items-center justify-center shrink-0 ${
                   filled ? 'bg-emerald-400 text-slate-950' : 'bg-white/15 text-white/60'
                 }`}>
                   {i + 1}
                 </span>
                 {filled ? (
                   <div className="text-left leading-tight">
-                    <p className="font-display font-900 text-amber-300 text-base">{c.line}</p>
-                    <p className="text-[10px] font-bold text-slate-300">{c.text}</p>
+                    <p className="font-display font-900 text-amber-300 text-sm sm:text-base">{c.line}</p>
+                    <p className="text-[9px] sm:text-[10px] font-bold text-slate-300">{c.text}</p>
                   </div>
                 ) : (
-                  <span className="text-white/35 font-extrabold text-xs">Unboxing Step {i + 1}…</span>
+                  <span className="text-white/35 font-extrabold text-[11px] sm:text-xs">Unboxing Step {i + 1}…</span>
                 )}
               </div>
             );
@@ -330,8 +330,8 @@ export function StepSorter({ activity, onSolved }) {
         </div>
 
         {/* Card Pile */}
-        <div className="bg-[#14082c] border-2 border-purple-400/40 rounded-2xl p-2.5 flex flex-col gap-1.5">
-          <p className="text-xs font-black text-purple-300 uppercase tracking-wider text-center flex items-center justify-center gap-1.5">
+        <div className="bg-[#14082c] border-2 border-purple-400/40 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col gap-1 sm:gap-1.5">
+          <p className="text-[11px] sm:text-xs font-black text-purple-300 uppercase tracking-wider text-center flex items-center justify-center gap-1.5">
             <span>🏷️</span> Action Step Cards
           </p>
           {shuffled.map(c => {
@@ -341,14 +341,14 @@ export function StepSorter({ activity, onSolved }) {
                 key={c.id}
                 disabled={used || done}
                 onClick={() => tap(c)}
-                className={`rounded-xl px-3 py-2 text-left font-display font-900 text-xs sm:text-sm border-2 transition cursor-pointer ${
+                className={`rounded-lg sm:rounded-xl px-2.5 py-1 sm:py-1.5 text-left font-display font-900 text-xs sm:text-sm border-2 transition cursor-pointer ${
                   used
                     ? 'opacity-25 border-white/10 bg-white/5 text-slate-400 line-through'
-                    : 'bg-gradient-to-b from-purple-500/30 to-purple-800/30 border-purple-300/50 text-white hover:scale-[1.02] hover:border-cyan-300'
+                    : 'bg-gradient-to-b from-purple-500/30 to-purple-800/30 border-purple-300/50 text-white hover:scale-[1.01] hover:border-cyan-300'
                 } ${shake === c.id ? 'animate-shake border-rose-400' : ''}`}
               >
                 <p className="leading-tight">{c.text}</p>
-                {c.desc && <p className="text-[10px] text-purple-200/80 font-normal mt-0.5">{c.desc}</p>}
+                {c.desc && <p className="text-[9px] sm:text-[10px] text-purple-200/80 font-normal mt-0.5">{c.desc}</p>}
               </button>
             );
           })}
@@ -356,16 +356,16 @@ export function StepSorter({ activity, onSolved }) {
       </div>
 
       {done ? (
-        <div className="w-full bg-emerald-950/80 border-2 border-emerald-400/60 rounded-xl px-4 py-2 text-center fade-in-up shrink-0">
-          <p className="font-display font-900 text-emerald-300 text-base sm:text-lg">
+        <div className="w-full bg-emerald-950/80 border-2 border-emerald-400/60 rounded-xl px-3 py-1.5 text-center fade-in-up shrink-0">
+          <p className="font-display font-900 text-emerald-300 text-sm sm:text-base">
             🎉 Parcel opened! The secret item inside is x = 6!
           </p>
-          <p className="font-extrabold text-emerald-100 text-xs sm:text-sm">
+          <p className="font-extrabold text-emerald-100 text-[11px] sm:text-xs">
             Check: 4(6) − 6 = 24 − 6 = 18 ✓ Matches the delivery manifest!
           </p>
         </div>
       ) : (
-        <div className="w-full border-2 border-white/15 bg-white/5 rounded-xl px-4 py-1.5 text-center text-xs sm:text-sm font-extrabold text-slate-200 shrink-0">
+        <div className="w-full border-2 border-white/15 bg-white/5 rounded-xl px-3 py-1 text-center text-[11px] sm:text-xs font-extrabold text-slate-200 shrink-0">
           {msg}
         </div>
       )}
@@ -373,7 +373,7 @@ export function StepSorter({ activity, onSolved }) {
       <HintBar hint={hint} grade7Tip={grade7Tip}>
         <button
           onClick={restart}
-          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-xs sm:text-sm px-4 py-2 rounded-xl transition cursor-pointer"
+          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-[11px] sm:text-xs px-3 py-1.5 rounded-lg sm:rounded-xl transition cursor-pointer"
         >
           🔄 Restart
         </button>
@@ -427,22 +427,22 @@ export function MistakeDetective({ activity, onSolved }) {
   return (
     <div className={WRAP}>
       {/* Real-World Clipboard Header */}
-      <div className="flex items-center justify-between w-full bg-[#14082c] border border-amber-400/40 rounded-xl px-3 py-1.5 shrink-0">
+      <div className="flex items-center justify-between w-full bg-[#14082c] border border-amber-400/40 rounded-lg sm:rounded-xl px-2.5 py-1 shrink-0">
         <div className="flex items-center gap-2">
-          <span className="text-xl">☕</span>
+          <span className="text-lg sm:text-xl">☕</span>
           <div>
-            <p className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Receipt Audit'}</p>
-            <p className="font-display font-900 text-xs text-white">Item: 2 Mystery Sandwiches + $6 Tip = $14 Total</p>
+            <p className="text-[9px] sm:text-[10px] text-amber-300 font-bold uppercase tracking-wider">{realWorld ? realWorld.context : 'Receipt Audit'}</p>
+            <p className="font-display font-900 text-xs sm:text-sm text-white">Item: 2 Mystery Sandwiches + $6 Tip = $14 Total</p>
           </div>
         </div>
-        <span className="text-[11px] font-mono bg-purple-900/60 px-2 py-0.5 rounded text-purple-200 border border-purple-400/30">
+        <span className="text-[10px] sm:text-[11px] font-mono bg-purple-900/60 px-2 py-0.5 rounded text-purple-200 border border-purple-400/30">
           {realWorld ? realWorld.invoiceNo : 'INVOICE #8812'}
         </span>
       </div>
 
       {/* Styled Invoice Ledger */}
-      <div className="w-full bg-[#14082c] border-2 border-purple-400/40 rounded-2xl p-3 flex flex-col gap-2 shrink-0">
-        <p className="text-xs font-black text-purple-300 uppercase tracking-wider text-center flex items-center justify-center gap-1.5">
+      <div className="w-full bg-[#14082c] border-2 border-purple-400/40 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col gap-1.5 shrink-0">
+        <p className="text-[11px] sm:text-xs font-black text-purple-300 uppercase tracking-wider text-center flex items-center justify-center gap-1.5">
           <span>📋</span> Cashier Ledger Lines {phase === 'done' && '— (Audit Approved)'}
         </p>
         {lines.map((l, i) => {
@@ -454,7 +454,7 @@ export function MistakeDetective({ activity, onSolved }) {
               key={i}
               onClick={() => pickLine(i)}
               disabled={phase !== 'find'}
-              className={`rounded-xl px-4 py-2 flex items-center justify-between border-2 transition ${
+              className={`rounded-lg sm:rounded-xl px-3 py-1 sm:py-1.5 flex items-center justify-between border-2 transition ${
                 fixed
                   ? 'bg-emerald-600/25 border-emerald-300/70'
                   : flagged
@@ -464,11 +464,11 @@ export function MistakeDetective({ activity, onSolved }) {
                 shake === `l${i}` ? 'animate-shake border-rose-400' : ''
               }`}
             >
-              <span className="text-xs font-extrabold text-slate-300 w-24 text-left">{l.note}</span>
-              <span className={`font-display font-900 text-lg sm:text-xl ${flagged ? 'text-rose-200' : 'text-amber-300'}`}>
+              <span className="text-[11px] sm:text-xs font-extrabold text-slate-300 w-20 sm:w-24 text-left">{l.note}</span>
+              <span className={`font-display font-900 text-base sm:text-lg ${flagged ? 'text-rose-200' : 'text-amber-300'}`}>
                 {fixed ? fixedLines[i] : l.eq}
               </span>
-              <span className="w-24 text-right text-base font-black">
+              <span className="w-20 sm:w-24 text-right text-sm font-black">
                 {fixed ? '✅ OK' : flagged ? '❌ ERROR' : '🔍'}
               </span>
             </button>
@@ -478,19 +478,19 @@ export function MistakeDetective({ activity, onSolved }) {
 
       {/* Audit Correction Options */}
       {phase === 'fix' && (
-        <div className="w-full grid grid-cols-1 gap-2 fade-in-up shrink-0">
-          <p className="text-xs font-black text-cyan-300 uppercase tracking-wider text-center">
+        <div className="w-full grid grid-cols-1 gap-1.5 fade-in-up shrink-0">
+          <p className="text-[11px] sm:text-xs font-black text-cyan-300 uppercase tracking-wider text-center">
             Select Auditor Correction:
           </p>
           {fixes.map((f, i) => (
             <button
               key={i}
               onClick={() => pickFix(f, i)}
-              className={`rounded-xl px-4 py-2.5 text-left font-display font-900 text-xs sm:text-sm bg-gradient-to-b from-purple-500/30 to-purple-800/30 border-2 border-purple-300/50 text-white hover:scale-[1.01] hover:border-cyan-300 transition cursor-pointer ${
+              className={`rounded-lg sm:rounded-xl px-3 py-1.5 sm:py-2 text-left font-display font-900 text-xs sm:text-sm bg-gradient-to-b from-purple-500/30 to-purple-800/30 border-2 border-purple-300/50 text-white hover:scale-[1.01] hover:border-cyan-300 transition cursor-pointer ${
                 shake === `f${i}` ? 'animate-shake border-rose-400' : ''
               }`}
             >
-              <span className="text-amber-300 mr-2">{String.fromCharCode(65 + i)}.</span> {f.text}
+              <span className="text-amber-300 mr-1.5">{String.fromCharCode(65 + i)}.</span> {f.text}
             </button>
           ))}
         </div>
@@ -498,16 +498,16 @@ export function MistakeDetective({ activity, onSolved }) {
 
       {/* Audit Solved Banner */}
       {phase === 'done' ? (
-        <div className="w-full bg-emerald-950/80 border-2 border-emerald-400/60 rounded-xl px-4 py-2 text-center fade-in-up shrink-0">
-          <p className="font-display font-900 text-emerald-300 text-base sm:text-lg">
+        <div className="w-full bg-emerald-950/80 border-2 border-emerald-400/60 rounded-xl px-3 py-1.5 text-center fade-in-up shrink-0">
+          <p className="font-display font-900 text-emerald-300 text-sm sm:text-base">
             🎉 Audit Approved! Each sandwich cost x = $4!
           </p>
-          <p className="font-extrabold text-emerald-100 text-xs sm:text-sm">
+          <p className="font-extrabold text-emerald-100 text-[11px] sm:text-xs">
             Bill check: 2($4) + $6 = $8 + $6 = $14 ✓ Everything balances!
           </p>
         </div>
       ) : (
-        <div className="w-full border-2 border-white/15 bg-white/5 rounded-xl px-4 py-1.5 text-center text-xs sm:text-sm font-extrabold text-slate-200 shrink-0">
+        <div className="w-full border-2 border-white/15 bg-white/5 rounded-xl px-3 py-1 text-center text-[11px] sm:text-xs font-extrabold text-slate-200 shrink-0">
           {msg}
         </div>
       )}
@@ -515,7 +515,7 @@ export function MistakeDetective({ activity, onSolved }) {
       <HintBar hint={hint} grade7Tip={grade7Tip}>
         <button
           onClick={restart}
-          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-xs sm:text-sm px-4 py-2 rounded-xl transition cursor-pointer"
+          className="bg-purple-900/80 hover:bg-purple-800 border border-purple-400/50 text-purple-100 font-display font-900 text-[11px] sm:text-xs px-3 py-1.5 rounded-lg sm:rounded-xl transition cursor-pointer"
         >
           🔄 Restart
         </button>
